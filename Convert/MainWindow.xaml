@@ -1,0 +1,81 @@
+﻿<Window x:Class="Convert.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Convert"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="550" Background="LightBlue">
+
+    <Window.Resources>
+        <local:ConvertIntToDate x:Key="IntToDate"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <UniformGrid Columns="1">
+            <TextBlock Text="Year" Margin="40"/>
+            <TextBlock Text="Month" Margin="40"/>
+            <TextBlock Text="Day" Margin="40"/>
+            <TextBlock Text="Date" Margin="40"/>
+        </UniformGrid>
+
+        <UniformGrid x:Name="uniformGrid_ащк_variables" Grid.Column="1" Columns="1">
+            
+            <TextBox x:Name="txt_BoxYear" Margin="40">
+                <TextBox.Text>
+                    <Binding Path="Year"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:YearRules/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBox x:Name="txt_BoxMonth" Margin="40">
+                <TextBox.Text>
+                    <Binding Path="Month"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:MonthRules/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                </TextBox>
+
+
+            <TextBox x:Name="txt_BoxDay" Margin="40">
+                <TextBox.Text>
+                    <Binding Path="Day"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:DayRules/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+
+            <DatePicker Margin="40">
+                <DatePicker.SelectedDate>
+                    <MultiBinding Converter="{StaticResource IntToDate}" UpdateSourceTrigger="PropertyChanged">
+                        <Binding ElementName="txt_BoxYear" Path="Text"/>
+                        <Binding ElementName="txt_BoxMonth" Path="Text"/>
+                        <Binding ElementName="txt_BoxDay" Path="Text"/>
+                    </MultiBinding>
+                </DatePicker.SelectedDate>
+            </DatePicker>
+
+        </UniformGrid>
+
+    </Grid>
+
+</Window>

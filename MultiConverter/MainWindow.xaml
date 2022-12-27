@@ -1,0 +1,78 @@
+﻿<Window x:Class="MultiConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultiConverter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="400" Background="LightBlue">
+    <Window.Resources>
+        <local:ConvertIntToDateTime x:Key="ConvIntToDate"/>
+    </Window.Resources>
+    
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <UniformGrid Columns="1" Margin="10">
+            <TextBlock  Margin="20"  Text="Day" Grid.Column="0"/>
+            <TextBlock  Margin="20" Text="Month" Grid.Column="0"/>
+            <TextBlock  Margin="20" Text="Year" Grid.Column="0"/>
+            <TextBlock  Margin="20" Text="DateTime" Grid.Column="0"/>
+        </UniformGrid>
+
+        <UniformGrid  Columns="1" Grid.Column="1" Margin="10">
+            <TextBlock Text="Year"/>
+            <TextBox x:Name="textBoxYear" TextChanged="textBoxYear_TextChanged">
+                <TextBox.Text>
+                    <Binding Path="Year"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:YearRules/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Text="Month"/>
+            <TextBox x:Name="textBoxMonth" TextChanged="textBoxMonth_TextChanged">
+                <TextBox.Text>
+                    <Binding Path="Month"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:MonthRules/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Text="Day"/>
+            <TextBox x:Name="textBoxDay">
+                <TextBox.Text>
+                    <Binding Path="Day"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:DayRules/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <DatePicker Margin="5">
+                <DatePicker.SelectedDate>
+                    <MultiBinding Converter="{StaticResource ConvIntToDate}" UpdateSourceTrigger="PropertyChanged">
+                        <Binding ElementName="textBoxYear" Path="Text"/>
+                        <Binding ElementName="textBoxMonth" Path="Text"/>
+                        <Binding ElementName="textBoxDay" Path="Text"/>
+                    </MultiBinding>
+                </DatePicker.SelectedDate>
+            </DatePicker>
+                        
+        </UniformGrid>
+    </Grid>
+</Window>
