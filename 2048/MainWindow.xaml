@@ -5,11 +5,90 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2048"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="500">
+        Title="MainWindow" MinHeight="600" MinWidth="500" Height="600" Width="500" Background="LightPink">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="87*"/>
-            <RowDefinition Height="397*"/>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="469*"/>
         </Grid.RowDefinitions>
+
+        <UniformGrid Grid.Row="0" Rows="1">
+
+            <Border Background="LightGray" Margin="10" CornerRadius="15">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Text="Score :" FontSize="30" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center" Text="108" FontSize="30" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="LightGray" Margin="10" CornerRadius="15">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Text="High Score :" FontSize="30" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center" Text="1084" FontSize="30" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+        </UniformGrid>
+
+        <UniformGrid Grid.Row="1" Background="DarkGray" Margin="20,20,20,20" Columns="4" Rows="4">
+
+            <Border Style="{StaticResource border_style_for_text_2}">
+                <TextBlock Text="2" Style="{StaticResource txt_style}"/>
+            </Border>
+
+            <Border Style="{StaticResource border_style}"/>
+            <Border Style="{StaticResource border_style}"/>
+            <Border Style="{StaticResource border_style}"/>
+
+            <Border Style="{StaticResource border_style_for_text_16}">
+                <TextBlock Text="16" Foreground="White" Style="{StaticResource txt_style}"/>
+            </Border>
+
+            <Border Style="{StaticResource border_style}"/>
+            <Border Style="{StaticResource border_style}"/>
+
+            <Border Style="{StaticResource border_style_for_text_4}">
+                <TextBlock Text="4" Style="{StaticResource txt_style}"/>
+            </Border>
+
+            <Border Style="{StaticResource border_style_for_text_4}">
+                <TextBlock Text="4" Style="{StaticResource txt_style}"/>
+            </Border>
+
+            <Border Style="{StaticResource border_style_for_text_2}">
+                <TextBlock Text="2" Style="{StaticResource txt_style}"/>
+            </Border>
+
+            <Border Style="{StaticResource border_style_for_text_4}">
+                <TextBlock Text="4" Style="{StaticResource txt_style}"/>
+            </Border>
+
+            <Border Style="{StaticResource border_style}"/>
+
+            <Border Style="{StaticResource border_style_for_text_8}">
+                <TextBlock Text="8" Foreground="White" Style="{StaticResource txt_style}"/>
+            </Border>
+
+
+            <Border Style="{StaticResource border_style_for_text_16}">
+                <TextBlock Text="16" Foreground="White" Style="{StaticResource txt_style}"/>
+            </Border>
+
+            <Border Style="{StaticResource border_style_for_text_2}">
+                <TextBlock Text="2" Style="{StaticResource txt_style}"/>
+            </Border>
+
+            <Border Style="{StaticResource border_style}"/>
+        </UniformGrid>
+
     </Grid>
 </Window>
