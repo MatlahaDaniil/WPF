@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600" Background="LightBlue" Closed="Window_Closed">
     
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>    
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -44,10 +51,29 @@
             <TextBlock Text="Phone Number" Margin="5" VerticalAlignment="Center" />
             <TextBox x:Name="Phone_num_Txt" Text="{Binding Path = phone_num}"  Margin="5" Height="30" VerticalAlignment="Center" />
         </UniformGrid>
-        
-        <Button x:Name="Add_Button"  Grid.Column="0" Grid.Row="1" Margin="2" Content="Add" Click="AddButton_Click"/>
-        <Button x:Name="Del_Button" Grid.Column="1" Grid.Row="2" Margin="2" Content="Delete" Click="Del_Button_Click"/>
 
+        <Button x:Name="Add_Button"  Grid.Column="0" Grid.Row="1" Margin="2" Click="AddButton_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Fill="Navy" Stroke="Black" StrokeThickness="3"/>
+                        <TextBlock Text="Add" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
         
+        <Button x:Name="Del_Button" Grid.Column="1" Grid.Row="2" Margin="2" Click="Del_Button_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle Fill="Navy" Stroke="Black" StrokeThickness="3"/>
+                        <TextBlock Text="Delete" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
     </Grid>
 </Window>
